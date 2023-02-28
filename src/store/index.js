@@ -1,109 +1,33 @@
-import {createSlice, configureStore} from "@reduxjs/toolkit";
+import {configureStore, createSlice} from "@reduxjs/toolkit";
+
 
 const initialState = {
-    counter: 0,
-    isShow: true,
+    goods: [],
+    quantity: 0,
+    cartShow: false,
 }
 
-const initialStateSec = {
-    second: 0,
-}
-
-const initialStateAuth = {
-    isAuth: false,
-}
-
-const counterSlice = createSlice({
-    name: 'counter',
+const cartSlice = createSlice({
+    name: 'cart',
     initialState: initialState,
     reducers: {
-        increment(state) {
-            state.counter++
+        addProduct(state, action) {
+            state.goods.push(action.payload);
+            state.quantity++;
         },
-        decrement(state) {
-            state.counter--
+        setCartShow(state) {
+            state.cartShow = !state.cartShow;
         },
-        increase(state, action) {
-            state.counter = state.counter + action.payload
-        },
-        showCounter(state) {
-            state.isShow = !state.isShow
-        },
-    }
+        addProductCorrect(state, action){
 
-});
-
-const secondsSlice = createSlice({
-    name: 'seconds',
-    initialState: initialStateSec,
-    reducers: {
-        updateSeconds(state, action) {
-            state.second = action.payload
-        },
-    }
-
-})
-
-const authSlice = createSlice({
-    name: 'auth',
-    initialState: initialStateAuth,
-    reducers: {
-        unassigned(state) {
-            state.isAuth = false
-        },
-        assigned(state) {
-            state.isAuth = true
         }
     }
-
 })
 
-
-// const counterReducer = (state = initialState, action) => {
-//
-//     if (action.type === 'increment') {
-//         return {
-//             ...state,
-//             counter: state.counter + action.payload
-//         }
-//     }
-//
-//     if (action.type === 'decrement') {
-//         return {
-//             ...state,
-//             counter: state.counter - 1
-//         }
-//     }
-//
-//     if (action.type === 'showCounter') {
-//         return {
-//             ...state,
-//             isShow: !state.isShow
-//         }
-//     }
-//
-//     if (action.type === 'SEC') {
-//         return {
-//             ...state,
-//             seconds: action.payload
-//         }
-//     }
-//
-//     return state;
-// }
-
-// const store = legacy_createStore(counterSlice.reducer);
-
-const store = configureStore({
+export const store = configureStore({
     reducer: {
-        counter: counterSlice.reducer,
-        seconds: secondsSlice.reducer,
-        auth: authSlice.reducer,
+        cart: cartSlice.reducer
     }
 })
 
-export const counterActions = counterSlice.actions;
-export const secondsActions = secondsSlice.actions;
-export const authActions = authSlice.actions
-
-export default store;
+export const cartActions = cartSlice.actions;

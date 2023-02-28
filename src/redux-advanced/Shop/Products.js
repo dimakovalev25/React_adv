@@ -4,17 +4,17 @@ import styles from "./Products.module.css";
 const Products = (props) => {
     return (
         <section className={styles.products}>
-            <h2>В нашем магазине товары самого высокого качества</h2>
+            {/*<h2>В нашем магазине товары самого высокого качества</h2>*/}
             <ul>
                 <ProductItem
-                    title="Товар"
+                    title="Товар1"
                     price={7}
-                    description="Благодаря своему высокому качеству, этот товар прослужит вам очень долго."
+                    description=""
                 />
                 <ProductItem
                     title="Товар2"
                     price={8}
-                    description="Благодаря своему высокому качеству, этот товар прослужит вам очень долго."
+                    description=""
                 />
                 <ProductItem
                     title="Товар3"
