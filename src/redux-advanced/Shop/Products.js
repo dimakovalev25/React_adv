@@ -21,6 +21,7 @@ const Products = (props) => {
                     price={10}
                     description=""
                 />
+
             </ul>
         </section>
     );
