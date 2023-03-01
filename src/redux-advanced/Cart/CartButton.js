@@ -12,7 +12,7 @@ const CartButton = (props) => {
 
     return (
         <button onClick={showCart} className={styles.button}>
-            <span>Корзина</span>
+            <span>Cart</span>
             <span className={styles.badge}>{activeProducts}</span>
         </button>
     );

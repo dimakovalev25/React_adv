@@ -2,22 +2,25 @@ import Card from "../UI/Card";
 import styles from "./ProductItem.module.css";
 
 import {cartActions} from "../../store";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const ProductItem = (props) => {
-    const {title, price, description} = props;
+    const cart = useSelector(state => state.cart)
+
+
+    const {id, title, price, description} = props;
 
     const dispatch = useDispatch()
 
-    const good = {
-        name: title,
+    const item = {
+        id: id,
         price: price,
-        description: description,
-        quantity: 1,
+        title: title,
+        description: description
     }
 
-    const addGoods = () => {
-        dispatch(cartActions.addProduct(good))
+    const addItem = () => {
+        dispatch(cartActions.addItem(item))
     }
 
 
@@ -30,7 +33,7 @@ const ProductItem = (props) => {
                 </header>
                 <p>{description}</p>
                 <div className={styles.actions}>
-                    <button onClick={addGoods}>Добавить в Корзину</button>
+                    <button onClick={addItem}>ADD to Cart</button>
                 </div>
             </Card>
         </li>

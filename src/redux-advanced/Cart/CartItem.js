@@ -1,7 +1,26 @@
 import styles from "./CartItem.module.css";
+import {useDispatch} from "react-redux";
+import {cartActions} from "../../store";
 
 const CartItem = (props) => {
-    const {title, quantity, total, price} = props.item;
+    const {id, title, quantity, total, price} = props.item;
+
+    const dispatch = useDispatch();
+
+    const item = {
+        id: id,
+        price: price,
+        title: title,
+    }
+
+    const addItem = () => {
+        dispatch(cartActions.addItem(item))
+    }
+
+    const removeItem = () => {
+        dispatch(cartActions.removeItem(id))
+    }
+
 
     return (
         <li className={styles.item}>
@@ -10,7 +29,7 @@ const CartItem = (props) => {
                 <div className={styles.price}>
                     ${total.toFixed(2)}{" "}
                     <span className={styles["item-price"]}>
-            (${price.toFixed(2)} / шт.)
+            (${price.toFixed(2)} / thing.)
           </span>
                 </div>
             </header>
@@ -19,8 +38,8 @@ const CartItem = (props) => {
                     x <span>{quantity}</span>
                 </div>
                 <div className={styles.actions}>
-                    <button>-</button>
-                    <button>+</button>
+                    <button onClick={removeItem}>-</button>
+                    <button onClick={addItem}>+</button>
                 </div>
             </div>
         </li>
